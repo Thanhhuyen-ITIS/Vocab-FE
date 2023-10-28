@@ -20,6 +20,11 @@ const goToLearn = () => {
   router.push("/learn");
 };
 
+const logout = () => {
+  localStorage.removeItem("token");
+  router.push("/login");
+};
+
 onMounted(async () => {
   axios.defaults.headers.common["Authorization"] =
     "Bearer " + localStorage.getItem("token");
@@ -40,9 +45,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main v-if="user">
-    <h1 class="font-extrabold text-3xl center">List vocabs</h1>
-    <div class="flex justify-end">
+  <main v-if="user" class="p-2">
+    <div class="flex justify-between">
+      <h1 class="font-extrabold text-3xl center inline-block">List vocabs</h1>
+    <button class="p-2 rounded-md bg-lime-300 hover:bg-lime-400 hover:shadow hover:shadow-sm hover:shadow-lime-300" @click="logout">Logout</button>
+    </div>
+    
+    <div class="flex justify-start mt-4">
       <button class="p-2 m-3 rounded-md bg-emerald-800 text-white">
         New word
       </button>
@@ -72,12 +81,12 @@ onMounted(async () => {
             <td>{{ vocab.user_id }}</td>
             <td>
               <button
-                class="p-2 rounded-md bg-green-500 text-white m-1"
+                class="p-2 rounded-md bg-green-700 text-white m-1"
                 @click="showEdit"
               >
                 Edit
               </button>
-              <button class="p-2 rounded-md bg-red-500 text-white m1-1">
+              <button class="p-2 rounded-md bg-red-700 text-white m1-1">
                 Delete
               </button>
             </td>
