@@ -66,10 +66,9 @@ onMounted(async () => {
       <table class="w-full">
         <thead class="text-xl font-medium table-header">
           <tr class="">
-            <th>Stt</th>
+            <th>STT</th>
             <th>Word</th>
             <th>Meaning</th>
-            <th>User_id</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -78,7 +77,6 @@ onMounted(async () => {
             <td>{{ index + 1 }}</td>
             <td>{{ vocab.word }}</td>
             <td>{{ vocab.meaning }}</td>
-            <td>{{ vocab.user_id }}</td>
             <td>
               <button
                 class="p-2 rounded-md bg-green-700 text-white m-1"
