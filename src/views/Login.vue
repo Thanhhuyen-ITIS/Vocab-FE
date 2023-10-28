@@ -45,7 +45,7 @@ const login = async () => {
         <input
           type="text"
           id="Username"
-          class="flex h-8 p-2 items-center border border-2 rounded-md placeholder:text-gray-400 w-full"
+          class="flex h-8 p-4 items-center border border-2 rounded-md placeholder:text-gray-400 placeholder:text-xs w-full text-lg"
           placeholder="Enter your username"
           v-model="user.username"
           :disabled="isPending"
@@ -57,7 +57,7 @@ const login = async () => {
         <input
           type="password"
           id="Password"
-          class="flex h-8 p-2 items-center border border-2 rounded-md w-full"
+          class="flex h-8 p-4 items-center border border-2 rounded-md w-full text-lg placeholder:text-gray-400 placeholder:text-xs"
           placeholder="Enter your password"
           v-model="user.password"
           :disabled="isPending"
@@ -66,7 +66,7 @@ const login = async () => {
       <p v-if="error" class="mt-2 text-red-600 text-sm">{{ error }}</p>
       
       <button
-        class="p-1 bg-green-900 text-white w-full rounded-md mt-8 hover:bg-green-950"
+        class="p-2 bg-green-900 text-white w-full rounded-md mt-8 hover:bg-green-950"
         :disabled="isPending"
       >
         Đăng nhập
