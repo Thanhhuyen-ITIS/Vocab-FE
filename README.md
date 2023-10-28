@@ -10,6 +10,15 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
+## Libraies
+
+axios - https://axios-http.com/docs/intro
+tailwindcss - https://tailwindcss.com/docs
+vue-router - https://next.router.vuejs.org/guide/
+pinia - https://pinia.esm.dev/
+
+
+
 ## Project Setup
 
 ```sh

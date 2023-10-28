@@ -12,6 +12,8 @@ const state = ref(0);
 const isFinish = ref(false);
 
 onMounted(async () => {
+  axios.defaults.headers.common["Authorization"] =
+    "Bearer " + localStorage.getItem("token");
   const res = await axios.get("user/me");
   user.value = res.data;
 
@@ -29,7 +31,6 @@ const Submit = () => {
 };
 
 const Random = () => {
-  
   if (indexWord.value == 0 || indexWord.value) {
     vocabs.value.splice(indexWord.value, 1);
   }
@@ -78,30 +79,46 @@ const again = async () => {
       <p class="font-medium sm:text-3xl text-2xl">Enter meaning of this word</p>
       <div class="mt-10 flex flex-col items-center justify-center">
         <div class="w-full">
-          <p
-            class="font-medium text-2xl rounded-md p-3 mb-5 text-green-950 w-full text-sky-700 text-center"
-          >
-            {{ vocabs[indexWord]? vocabs[indexWord].word : "" }}
-          </p>
-          <input
-            type="text"
-            class="p-2 border border-2 rounded-md w-full"
-            placeholder="meaning"
-            v-model="userAnswer"
-            :disabled="state == 1"
-          />
+          <form @submit.prevent="Submit" class="w-full">
+            <p
+              class="font-medium text-2xl rounded-md p-3 mb-5 text-green-950 w-full text-sky-700 text-center"
+            >
+              {{ vocabs[indexWord] ? vocabs[indexWord].word : "" }}
+            </p>
+            <input
+              type="text"
+              class="p-2 border border-2 rounded-md w-full"
+              placeholder="meaning"
+              v-model="userAnswer"
+              :disabled="state == 1"
+            />
+          </form>
         </div>
       </div>
       <div
         class="flex justify-between items-center rounded-md mt-5 p-2"
-        :class="state == 0 && !isFinish ? '' : result || isFinish ? 'bg-green-200' : 'bg-red-200'"
+        :class="
+          state == 0 && !isFinish
+            ? ''
+            : result || isFinish
+            ? 'bg-green-200'
+            : 'bg-red-200'
+        "
       >
         <div>
           <p
             :class="result || isFinish ? 'text-green-600' : 'text-red-600'"
             class="font-bold text-lg"
           >
-            {{ isFinish ? 'Completed all vocabulary' : (state == 0 ? "" : result ? "Correct answer" : "Wrong") }}
+            {{
+              isFinish
+                ? "Completed all vocabulary"
+                : state == 0
+                ? ""
+                : result
+                ? "Correct answer"
+                : "Wrong"
+            }}
           </p>
           <p v-if="!result && state == 1" class="text-red-600">
             Correct answer: {{ vocabs[indexWord].meaning }}
