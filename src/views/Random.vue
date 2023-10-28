@@ -95,10 +95,10 @@ onBeforeUnmount(() => {
   >
     <div class="rounded-md p-4">
       <form @submit.prevent="Submit" class="w-full">
-        <p class="font-medium sm:text-3xl text-2xl">
+        <p class="font-medium sm:text-3xl text-2xl" v-if="!isFinish">
           Enter meaning of this word
         </p>
-        <div class="mt-10 flex flex-col items-center justify-center">
+        <div class="mt-10 flex flex-col items-center justify-center" v-if="!isFinish">
           <div class="w-full">
             <p
               class="font-medium text-2xl rounded-md p-3 mb-5 text-green-950 w-full text-sky-700 text-center"
@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
             />
           </div>
         </div>
-        <div
+        <div 
           class="flex justify-between items-center rounded-md mt-5 p-2"
           :class="
             state == 0 && !isFinish
@@ -161,9 +161,8 @@ onBeforeUnmount(() => {
             {{ state == 0 ? "Submit" : "Next" }}
           </button>
         </div>
-        <div class="flex justify-between items-center rounded-md mt-5 p-2">
+        <div class="flex justify-between items-center rounded-md mt-5 p-2" v-if="isFinish">
           <button
-            v-if="isFinish"
             class="rounded-md p-2 shadow shadow-md text-white bg-emerald-950"
             @click="again"
           >
@@ -171,7 +170,6 @@ onBeforeUnmount(() => {
           </button>
           <button
             @click="router.push('/')"
-            v-if="isFinish"
             class="rounded-md p-2 shadow shadow-md text-white bg-blue-700 ml-1"
           >
             Home

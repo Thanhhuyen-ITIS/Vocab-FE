@@ -39,9 +39,9 @@ const login = async () => {
 <template>
   <div class="h-screen w-full flex justify-center items-center text-black">
     <form class="lg:w-1/3 sm:w-1/2 w-full m-4" @submit.prevent="login">
-      <p class="text-4xl font-medium w-full text-center">Đăng nhập</p>
+      <p class="text-4xl font-medium w-full text-center">Login</p>
       <div class="mt-10">
-        <label for="Username" class="text-xl font-medium w-full">Email</label>
+        <label for="Username" class="text-xl font-medium w-full">Username</label>
         <input
           type="text"
           id="Username"
