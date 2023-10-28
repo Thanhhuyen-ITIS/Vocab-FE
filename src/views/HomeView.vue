@@ -18,6 +18,10 @@ const showEdit = () => {
   console.log(isShowEdit.value);
 }
 
+const goToLearn = () => {
+  router.push("/learn");
+}
+
 onMounted(async () => {
   const res = await axios.get("user/me");
   user.value = res.data;
@@ -32,9 +36,10 @@ onMounted(async () => {
 
 <template>
   <main v-if="user">
-    <h1 class=" font-extrabold text-3xl center">Danh sách từ vựng của bạn</h1>
+    <h1 class=" font-extrabold text-3xl center">List vocabs</h1>
     <div class="flex justify-end">
       <button class="p-2 m-3 rounded-md bg-emerald-800 text-white">New word</button>
+      <button class="p-2 m-3 rounded-md bg-blue-800 text-white" @click="goToLearn">Start</button>
     </div>
     <div class="w-full">
       <table class="w-full">
@@ -45,7 +50,7 @@ onMounted(async () => {
             <th>Meaning</th>
             <th>User_id</th>
             <th>
-              Thao tác
+              Action
             </th>
           </tr>
         </thead>
